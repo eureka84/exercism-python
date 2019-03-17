@@ -1,4 +1,6 @@
 import random
+import math
+import string
 
 
 class Robot:
@@ -7,18 +9,24 @@ class Robot:
         self.name = Robot.__generate_name(self)
 
     def reset(self):
-        random.seed(random.randint(0, 10000000))
+        random.seed(self.name)
         self.name = Robot.__generate_name(self)
 
     def __generate_name(self):
         a_letter = self.__random_letter()
         another_letter = self.__random_letter()
-        return a_letter + another_letter + self.__random_number()
+        a_three_digit_number = self.__three_digit_number_as_string(self)
+        return a_letter + another_letter + a_three_digit_number
 
     @staticmethod
     def __random_letter():
-        return chr(random.randint(65, 65 + 26))
+        alphabet = list(string.ascii_uppercase)
+        return random.choice(alphabet)
 
     @staticmethod
-    def __random_number():
-        return str(random.randint(0, 999)).zfill(3)
+    def __three_digit_number_as_string(self):
+        return str(self.__random_number(3)).zfill(3)
+
+    @staticmethod
+    def __random_number(number_of_digits):
+        return random.choice(range(1, int(math.pow(10, number_of_digits))))

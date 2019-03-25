@@ -3,6 +3,6 @@ import string
 
 def is_pangram(sentence):
     alphabet = set(string.ascii_lowercase)
-    onlyLetters = filter(lambda x: x.isalpha(), list(sentence))
-    characterSet = set(map(lambda x: x.lower(), onlyLetters))
-    return characterSet == alphabet
+    only_letters = filter(lambda x: x.isalpha(), list(sentence))
+    character_set = set(map(lambda x: x.lower(), only_letters))
+    return character_set == alphabet
